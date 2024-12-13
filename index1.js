@@ -72,8 +72,7 @@ app.get("/products/:product_id", async (req, res) => {
     
     if (!products) {
       return res.status(404).json({ error: 'Product not found' }); 
-    }
-
+    }    
     res.status(200).json(products); // Send the found product as the response
   } catch (err) {
     console.error("Error fetching product:", err);
@@ -126,7 +125,6 @@ app.delete('/products/:id', async (req, res) => {
     res.status(500).send({ error: 'Error deleting product' });
   }
 });
-
 
 
 
