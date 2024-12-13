@@ -61,16 +61,17 @@ app.get("/products", async (req, res) => {
     console.error("Error fetching products:", err);
     res.status(500).json({ error: 'Error fetching products' });
   }
-});
+}); 
 
 // Route to get one products
-app.get("/products/one", async (req, res) => {
+app.get("/products/:product_id", async (req, res) => {
   try {
-    const title = req.query.title; // Get the title from the query parameter
-    const products = await Product.findOne({ title: title }); 
-    // Fetch product by title (ensure Adventure is the correct model)
+    const id  = req.params.product_id // Get the title from the query parameter
+    console.log("id=",id)
+    const products = await Product.findById({ _id: id }); 
+    
     if (!products) {
-      return res.status(404).json({ error: 'Product not found' });
+      return res.status(404).json({ error: 'Product not found' }); 
     }
 
     res.status(200).json(products); // Send the found product as the response
