@@ -8,6 +8,7 @@ dotenv.config();
 app.use("/static", express.static("public"));
 app.use(bodyParser.json());  // Middleware to parse JSON data in request bodies
 app.use(express.json());  
+
 // Define the Product schema
 const productSchema = new mongoose.Schema({
   title: { type: String, required: true },
@@ -124,5 +125,7 @@ app.delete('/products/:id', async (req, res) => {
     res.status(500).send({ error: 'Error deleting product' });
   }
 });
+
+
 
 
